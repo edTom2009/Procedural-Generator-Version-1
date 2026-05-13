@@ -1,0 +1,11 @@
+*{
+    box-sizing: border-box;
+}
+body {
+    font-family: IBM Plex Sans;
+    background-color: #E8DFC9;
+}
+
+.cta-btn {
+    background-color:#788B5A;
+}

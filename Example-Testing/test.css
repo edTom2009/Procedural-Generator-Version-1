@@ -1,0 +1,19 @@
+body {
+    background-color: #E8DFC9;
+    color: #34322E;
+    font-family: inter;
+}
+
+p {
+    font-size: 18px;
+    width: 800px;
+}
+
+button {
+    background-color:#788B5A;
+    
+    font-size: 30px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}

@@ -23,7 +23,7 @@
     <h2>Parameter Input</h2>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia eaque dolore beatae animi? Iste, eaque harum corporis dignissimos saepe enim deleniti dolor voluptatum est natus. Numquam, ad sed. Exercitationem, deserunt?</p>
 
-    <form action="\Python\main.py" class="formParameter">
+    <form action="\Python\main.py" method="get" class="formParameter">
         <label for="mapWidth">Map Width:</label>
         <input type="number" id="mapWidth" name="mapWidth">
         <br><br>
@@ -39,7 +39,13 @@
         <div class="slideContianer">
             <label for="sldrDetail">Detail</label><br>
             <span>Low</span>
-            <input type="range" min="1" max="100" value="50" class="slider" id="sldrDetail">
+            <input 
+                type="range" 
+                min="1" 
+                max="100" 
+                value="50" 
+                class="slider" 
+                id="sldrDetail">
             <span>High</span>
             <br><br>
         </div>

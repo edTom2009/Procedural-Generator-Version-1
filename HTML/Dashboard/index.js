@@ -1,38 +1,39 @@
-function openModal(buttonID, modalID) {
-  const button = document.getElementById(buttonID);
-  const modal = document.getElementById(modalID);
-  const closeBtn = modal.querySelector(".close")
+function setupModal(buttonId, modalId) {
+    const button = document.getElementById(buttonId);
+    const modal = document.getElementById(modalId);
+    const closeBtn = modal.querySelector(".close");
 
-  button.addEventListener("click", () => {
-    modal.style.display = "block";
+    // Open
+    button.addEventListener("click", () => {
+        modal.style.display = "block";
+    });
 
-    // X button
+    // Close via X
     closeBtn.addEventListener("click", () => {
         modal.style.display = "none";
     });
 
-    // Outside click
+    // Close via outside click
     modal.addEventListener("click", (event) => {
         if (event.target === modal) {
             modal.style.display = "none";
         }
     });
-  });
-
 }
-document.querySelectorAll(".modal").forEach(modal => {
-    // X button
-    modal.querySelector(".close").addEventListener("click", () => {
-        modal.style.display = "none";
-    });
 
-    // Outside click
-    modal.addEventListener("click", event => {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    });
-});
+function setupFontSize(sliderId, textId) {
+    const slider = document.getElementById(sliderId);
+    const text = document.getElementById(textId);
 
-openModal("btnHelp","modalHelp");
-openModal("btnSettings","modalSettings");
+    text.style.fontSize = slider.value + "px";
+
+    slider.addEventListener("input", () => {
+        console.log(slider.value);
+        text.style.fontSize = slider.value + "px";
+    });
+    
+}
+
+setupModal("btnHelp", "modalHelp");
+setupModal("btnSettings", "modalSettings");
+setupFontSize("sldrFontSize","sampleText");

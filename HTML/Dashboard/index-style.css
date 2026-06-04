@@ -1,18 +1,17 @@
 :root {
 
-  --background: #F3F9FE;
-  --surface: #FFFFFF;
-  --shadow: #eceef2; 
+--background: rgb(243, 249, 254);   
+--surface: rgb(255, 255, 255);     
+--shadow: rgb(236, 238, 242);      
 
-  --text: #2E3142;
+--text: rgb(46, 49, 66);           
 
-  --accent: #8B7CF6;
-  --accent-hover: #5d51b5;
+--accent: rgb(139, 124, 246);      
+--accent-hover: rgb(93, 81, 181);   
 
-  --slider-track: #D8D5E6;
-  --slider-thumb: #8B7CF6;
+--slider-track: rgb(216, 213, 230); 
 
-  --button-text: white;
+--button-text: rgb(255, 255, 255); 
 }
 
 body {
@@ -21,11 +20,34 @@ body {
   background-color: var(--background);
 }
 
+button, #generateTerrain, #btnApplySett {
+  align-items: center;
+  background-color: var(--accent);
+  color: var(--text);
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  margin: auto; 
+}
+
+button:hover, #generateTerrain:hover, #btnApplySett:hover{
+  background-color: var(--accent-hover);
+  color: var(--text-muted);
+  cursor: pointer; 
+}
+
+img {
+  max-width: 90%;
+  max-height: 90%;
+  margin-top: 20px;
+}
+
+/* ========================== MAIN ========================= */
 .main {
   margin-right: 25%;
 }
 
-.main h1, .navigation {
+.main h1, .navigation, img {
   width: 90%;
   background-color: var(--surface);
   align-self: center;
@@ -34,24 +56,15 @@ body {
   padding: 20px;
 }
 
+
 .navigation button {
-  align-items: center;
-  background-color: var(--accent);
-  color: var(--text);
   width: 33%;
   font-size: 30px;
-  padding: 12px;
-  border: none;
-  border-radius: 5px;
-  margin: auto; 
 }
 
-.navigation button:hover{
-  background-color: var(--accent-hover);
-  color: var(--text-muted);
-  cursor: pointer; 
-}
 
+
+/* ========================== SIDE-BAR ========================= */
 .parameterInput {
   height: 100%;
   width: 25%;
@@ -64,7 +77,7 @@ body {
 }
 
 .parameterInput h2 {
-  font-size: 25px;
+  font-size: 35px;
 }
 
 .parameterInput p {
@@ -82,6 +95,21 @@ body {
   float: right;
 }
 
+.parameterButtons {
+  width: 90%;
+  align-self: center;
+  border-radius: 20px;
+  box-shadow: 10px 10px 5px var(--shadow);
+  padding: 20px;
+}
+
+.parameterInput button, #generateTerrain {
+  width: 49%;
+  font-size: 20px;
+}
+
+
+/* ========================== SLIDER ========================= */
 .slideContainer {
   width: 100%;
   display: flex;
@@ -91,12 +119,10 @@ body {
 .slideContainer label {
   width: 100%;
   text-align: center;
-
 }
 
 .slideContainer span {
   font-size: 15px;
-
 }
 
 .slider {
@@ -107,43 +133,23 @@ body {
   background: var(--slider-track);
 }
 
+/*Slider Thumb*/
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: var(--slider-thumb);
+  background: var(--accent);
   cursor: pointer;
 }
-
-.parameterButtons {
-  width: 90%;
-  align-self: center;
-  border-radius: 20px;
-  box-shadow: 10px 10px 5px var(--shadow);
-  padding: 20px;
-}
-
-.parameterInput button, #generateTerrain {
-  text-align: center;
-  background-color: var(--accent);
-  color: var(--text);
-  width: 49%;
-  font-size: 20px;
-  padding: 12px;
-  border: none;
-  border-radius: 5px;
-  margin: auto; 
-}
-
-.parameterInput button:hover, #generateTerrain:hover{
+.slider::-webkit-slider-thumb:hover {
   background-color: var(--accent-hover);
-  color: var(--text-muted);
-  cursor: pointer; 
 }
 
-/* The Modal (background) */
+
+/* ========================== MODAL========================= */
+/* Background */
 .modal {
   display: none; 
   position: fixed; 
@@ -153,21 +159,21 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-
 }
-
-/* Modal ContentBox */
+/* Content*/
 .modalContainer {
+  text-align: center;
   background-color: var(--surface);
+  top: auto;
   margin: 20% auto;
   padding: 20px;
   border: 1px solid var(--text);
   border-radius: 15px;
-  width: 60%; 
-
+  width: 60%;
+  float: center;
 }
 
-/* The Close Button */
+/* Close Button */
 .close {
   color: var(--accent);
   float: right;

@@ -1,3 +1,4 @@
+// Sets up a modal with the given button and modal IDs
 function setupModal(buttonId, modalId) {
     const button = document.getElementById(buttonId);
     const modal = document.getElementById(modalId);
@@ -21,6 +22,7 @@ function setupModal(buttonId, modalId) {
     });
 }
 
+// Sets up a slider to adjust the font size of a text element
 function setupFontSize(sliderId, textId) {
     const slider = document.getElementById(sliderId);
     const text = document.getElementById(textId);
@@ -28,10 +30,8 @@ function setupFontSize(sliderId, textId) {
     text.style.fontSize = slider.value + "px";
 
     slider.addEventListener("input", () => {
-        console.log(slider.value);
         text.style.fontSize = slider.value + "px";
     });
-    
 }
 
 setupModal("btnHelp", "modalHelp");

@@ -1,18 +1,37 @@
 :root {
+/* -----------------------Light Mode Colors---------------------- */
+--background-light: rgb(243, 249, 254);   
+--surface-light: rgb(255, 255, 255);     
+--shadow-light: rgb(236, 238, 242);      
 
---background: rgb(243, 249, 254);   
---surface: rgb(255, 255, 255);     
---shadow: rgb(236, 238, 242);      
+--text-light: rgb(46, 49, 66);           
 
---text: rgb(46, 49, 66);           
+--accent-light: rgb(139, 124, 246);      
+--accent-hover-light: rgb(93, 81, 181);   
 
---accent: rgb(139, 124, 246);      
---accent-hover: rgb(93, 81, 181);   
+--slider-track-light: rgb(216, 213, 230); 
 
---slider-track: rgb(216, 213, 230); 
+/* -----------------------Dark Mode Colors---------------------- */
+--background-dark: rgb(46, 49, 66);
+--surface-dark: rgb(36, 38, 52);
+--shadow-dark: rgb(26, 28, 42);
 
---button-text: rgb(255, 255, 255); 
+--text-dark: rgb(243, 249, 254);
+
+--accent-dark: rgb(139, 124, 246);
+--accent-hover-dark: rgb(93, 81, 181);
+
+--slider-track-dark: rgb(216, 213, 230);
+  /* Default mappings used by the site (change when theme toggles) */
+  --background: var(--background-light);
+  --surface: var(--surface-light);
+  --shadow: var(--shadow-light);
+  --text: var(--text-light);
+  --accent: var(--accent-light);
+  --accent-hover: var(--accent-hover-light);
+  --slider-track: var(--slider-track-light);
 }
+
 
 body {
   font-family: Arial, Helvetica, sans-serif;

@@ -50,6 +50,7 @@ function toggleTheme() {
             root.style.setProperty('--accent', 'var(--accent-dark)');
             root.style.setProperty('--accent-hover', 'var(--accent-hover-dark)');
             root.style.setProperty('--slider-track', 'var(--slider-track-dark)');
+            
         } else {
             root.style.setProperty('--background', 'var(--background-light)');
             root.style.setProperty('--surface', 'var(--surface-light)');

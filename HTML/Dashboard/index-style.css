@@ -1,28 +1,30 @@
 :root {
+  --base-font-size: 16px;
 /* -----------------------Light Mode Colors---------------------- */
---background-light: rgb(243, 249, 254);   
---surface-light: rgb(255, 255, 255);     
---shadow-light: rgb(236, 238, 242);      
+  --background-light: rgb(243, 249, 254);   
+  --surface-light: rgb(255, 255, 255);     
+  --shadow-light: rgb(236, 238, 242);      
 
---text-light: rgb(46, 49, 66);           
+  --text-light: rgb(46, 49, 66);           
 
---accent-light: rgb(139, 124, 246);      
---accent-hover-light: rgb(93, 81, 181);   
+  --accent-light: rgb(139, 124, 246);      
+  --accent-hover-light: rgb(93, 81, 181);   
 
---slider-track-light: rgb(216, 213, 230); 
+  --slider-track-light: rgb(216, 213, 230); 
 
 /* -----------------------Dark Mode Colors---------------------- */
---background-dark: rgb(46, 49, 66);
---surface-dark: rgb(36, 38, 52);
---shadow-dark: rgb(26, 28, 42);
+  --background-dark: rgb(46, 49, 66);
+  --surface-dark: rgb(36, 38, 52);
+  --shadow-dark: rgb(26, 28, 42);
 
---text-dark: rgb(243, 249, 254);
+  --text-dark: rgb(243, 249, 254);
 
---accent-dark: rgb(139, 124, 246);
---accent-hover-dark: rgb(93, 81, 181);
+  --accent-dark: rgb(139, 124, 246);
+  --accent-hover-dark: rgb(93, 81, 181);
 
---slider-track-dark: rgb(216, 213, 230);
-  /* Default mappings used by the site (change when theme toggles) */
+  --slider-track-dark: rgb(216, 213, 230);
+
+/* Default mappings (change when theme toggles) */
   --background: var(--background-light);
   --surface: var(--surface-light);
   --shadow: var(--shadow-light);
@@ -37,6 +39,20 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color:var(--text);
   background-color: var(--background);
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+p {
+  font-size: 1.25rem;
 }
 
 button, #generateTerrain, #btnApplySett {
@@ -63,10 +79,11 @@ img {
 
 /* ========================== MAIN ========================= */
 .main {
+  align-items: center;
   margin-right: 25%;
 }
 
-.main h1, .navigation, img {
+#pageTitle, .navigation, .renderedMap {
   width: 90%;
   background-color: var(--surface);
   align-self: center;
@@ -75,13 +92,10 @@ img {
   padding: 20px;
 }
 
-
 .navigation button {
   width: 33%;
-  font-size: 30px;
+  font-size: 2rem;
 }
-
-
 
 /* ========================== SIDE-BAR ========================= */
 .parameterInput {
@@ -96,15 +110,15 @@ img {
 }
 
 .parameterInput h2 {
-  font-size: 35px;
+  font-size: 2.5rem;
 }
 
 .parameterInput p {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .formParameter label {
-  font-size: 25px;
+  font-size: 1.25rem;
 }
 
 .formParameter input[type="number"] {
@@ -124,7 +138,7 @@ img {
 
 .parameterInput button, #generateTerrain {
   width: 49%;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 
@@ -141,7 +155,7 @@ img {
 }
 
 .slideContainer span {
-  font-size: 15px;
+  font-size: 1.25rem;
 }
 
 .slider {

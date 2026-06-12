@@ -1,3 +1,5 @@
+// Dashboard JavaScript
+
 // Sets up a modal with the given button and modal IDs
 function setupModal(buttonId, modalId) {
     const button = document.getElementById(buttonId);
@@ -36,7 +38,7 @@ function setupFontSize(sliderId, textId) {
         var textScale = slider.value/16;
     });
 }
-
+// Toggles between light and dark themes by changing CSS variables
 function toggleTheme() {
     const drop = document.getElementById("drpTheme");
 
@@ -60,7 +62,6 @@ function toggleTheme() {
             root.style.setProperty('--accent-hover', 'var(--accent-hover-light)');
             root.style.setProperty('--slider-track', 'var(--slider-track-light)');
         }
-        try { localStorage.setItem('theme', theme); } catch (e) {}
     };
 
     if (!drop) return;
@@ -69,19 +70,39 @@ function toggleTheme() {
         applyTheme(drop.value);
     });
 
-    // Initialize from saved preference or select value
-    const saved = (function(){ try { return localStorage.getItem('theme'); } catch(e){ return null; }})();
-    if (saved) {
-        applyTheme(saved);
-        if (drop.value !== saved) drop.value = saved;
-    } else {
-        applyTheme(drop.value || 'Light');
-    }
+}
+
+function resetSettings() {
+    const btnReset = document.getElementById("btnResetSett");
+    btnReset.addEventListener("click", () => {
+        // Reset theme to default (Light)
+        const drop = document.getElementById("drpTheme");
+        drop.value = "Light";
+        toggleTheme();
+
+
+        // Reset font size to default (16px)
+        const slider = document.getElementById("sldrFontSize");
+        if (slider) {
+            slider.value = 16;
+            setupFontSize("sldrFontSize", "sampleText");
+        }
+    });
 }
 
 function applySettings() {
-    // Placeholder for applying settings
-    alert("Settings applied!");
+    const drop = document.getElementById("drpTheme");
+    const slider = document.getElementById("sldrFontSize");
+    const btnApply = document.getElementById("btnApplySett");
+
+    btnApply.addEventListener("click", () => {
+
+        document.documentElement.style.setProperty(
+            '--base-font-size', 
+            `${slider.value}px`);
+        
+        
+    });
 }
 
 // Initialize modals and font size slider
@@ -89,3 +110,4 @@ setupModal("btnHelp", "modalHelp");
 setupModal("btnSettings", "modalSettings");
 setupFontSize("sldrFontSize","sampleText");
 toggleTheme();
+resetSettings();

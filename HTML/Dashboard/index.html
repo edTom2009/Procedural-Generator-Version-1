@@ -10,7 +10,7 @@
         <!--========================== MAIN =========================-->
 
         <div class="main">
-            <h1>Procedural Terrain Generator</h1>
+            <h1 id="pageTitle">Procedural Terrain Generator</h1>
 
             <div class="navigation">
                 <button id="btnSettings">Settings</button>
@@ -18,8 +18,8 @@
                 <button id="btnLogOut" onclick="document.location='/HTML/Login/login.html'">Log Out</button><!--links back to login page-->
             </div>
 
-            <!--HTML for displaying renered map will be added here-->
-            <img src="Map Placeholder.png" width>
+            <!--HTML for displaying rendered map will be added here-->
+            <img id="renderedMap" src="Map Placeholder.png" width>
 
         </div>
 
@@ -95,40 +95,37 @@
                 <span class="close">&times;</span>
                 <h1>Settings</h1>
                 <hr>
-                <!---------------------------- Slider ----------------------------->
-                <form>
-                    <div class="slideContianer">
-                        <label for="sldrFontSize">Font Size</label><br>
-                        <span>Small</span>
-                        <input 
-                            type="range" 
-                            min="12" 
-                            max="48" 
-                            value="16" 
-                            class="slider" 
-                            id="sldrFontSize">
-                        <span>Large</span>
-                        <br>
-                        <p id="sampleText">
-                            This will the size of the text.
-                        </p>
-                    </div>
+            <!---------------------------- Slider ----------------------------->
+                <div class="slideContianer">
+                    <label for="sldrFontSize">Font Size</label><br>
+                    <span>Small</span>
+                    <input 
+                        type="range" 
+                        min="12" 
+                        max="48" 
+                        value="16" 
+                        class="slider" 
+                        id="sldrFontSize">
+                    <span>Large</span>
+                    <br>
+                    <p id="sampleText">
+                        This will the size of the text.
+                    </p>
+                </div>
 
-                    <!---------------------------- Drop Menu ----------------------------->
-                    <div class="dropdownContainer">
-                        <label for="theme">Theme:</label>
-                        <select name="theme" id="drpTheme">
-                            <option value="Light">Default (Light)</option>
-                            <option value="Dark">Dark</option>
-                        </select>
-                        <br><br>
-                    </div>
-
-                    <div class="settingsButtons">
-                        <button id="btnResetSett">Reset Settings</button>
-                        <input type="submit" id="btnApplySett" value="Apply Settings">
-                    </div>
-                </form>
+                <!---------------------------- Drop Menu ----------------------------->
+                <div class="dropdownContainer">                            
+                    <label for="theme">Theme:</label>
+                    <select name="theme" id="drpTheme" value="Light">
+                        <option value="Light">Default (Light)</option>
+                        <option value="Dark">Dark</option>
+                    </select>
+                    <br><br>
+                </div>
+                <div class="settingsButtons">
+                    <button id="btnResetSett">Reset Settings</button>
+                    <button id="btnApplySett">Apply Settings</button>
+                </div>
             </div>
         </div>
         

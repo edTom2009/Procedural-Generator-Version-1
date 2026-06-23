@@ -3,18 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="createAcc.css">
     <title>Create Account</title>
 </head>
 <body>
-    <h1>Create Account</h1>
-    <form action="/HTML/Login/login.html" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br><br>
-        <input type="submit" value="Create Account">
-    </form>
-    <a href="/HTML/Login/login.html">Back to Login</a>
+    <div class="create-account-container">
+        <h1>Create Account</h1>
+        <form action="/HTML/Login/login.html" method="post">
+            <input 
+                type="text" 
+                id="username" 
+                name="username" 
+                value="Username"
+                required>
+            <br><br>
+
+            <input 
+                type="text" 
+                id="password" 
+                name="password" 
+                value="Password"
+                required>
+            <br><br>
+            <input type="submit" value="Create Account">
+        </form>
+        <a href="/HTML/Login/login.html">Back to Login</a>
+    </div>
+    <script src="createAcc.js"></script>
+</body>
 </html>

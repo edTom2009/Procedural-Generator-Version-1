@@ -1,0 +1,68 @@
+:root {
+  --base-font-size: 16px;
+/* -----------------------Colors---------------------- */
+  --background: rgb(243, 249, 254);   
+  --surface: rgb(255, 255, 255);     
+  --shadow: rgb(236, 238, 242);      
+
+  --text: rgb(46, 49, 66);           
+
+  --accent: rgb(139, 124, 246);      
+  --accent-hover: rgb(93, 81, 181);   
+
+  --slider-track: rgb(216, 213, 230); 
+
+}
+
+html {
+  font-size: var(--base-font-size);
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color:var(--text);
+  background-color: var(--background);
+}
+
+.login-container {
+  height: 100%;
+  width: 25%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: var(--surface);
+  box-shadow: -10px 0 5px var(--shadow);
+  padding: 20px;
+}
+
+.login-container h1 {
+  font-size: 2.5rem;
+}
+
+.login-container p {
+  font-size: 1.25rem;
+}
+
+.login-container label {
+  font-size: 1.25rem;
+}
+
+.login-container input[type="text"], .login-container input[type="password"] {
+  width: 60%;
+  height: 30px;
+  border-radius: 5px;
+  float: right;
+}
+
+.login-container input[type="submit"] {
+  width: 90%;
+  align-self: center;
+  border-radius: 20px;
+  box-shadow: 10px 10px 5px var(--shadow);
+  padding: 20px;
+}
+
+.login-container a {
+  width: 49%;
+  font-size: 1.25rem;
+}

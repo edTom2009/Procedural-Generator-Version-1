@@ -33,7 +33,9 @@
   --accent-hover: var(--accent-hover-light);
   --slider-track: var(--slider-track-light);
 }
-
+html {
+  font-size: var(--base-font-size);
+}
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -50,6 +52,7 @@ h2 {
   font-size: 2rem;
   text-align: center;
 }
+
 
 p {
   font-size: 1.25rem;
@@ -81,9 +84,10 @@ img {
 .main {
   align-items: center;
   margin-right: 25%;
+  margin-left: 3%;
 }
 
-#pageTitle, .navigation, .renderedMap {
+#pageTitle, .navigation, #renderedMap {
   width: 90%;
   background-color: var(--surface);
   align-self: center;
@@ -202,7 +206,7 @@ img {
   padding: 20px;
   border: 1px solid var(--text);
   border-radius: 15px;
-  width: 60%;
+  width: 50%;
   float: center;
 }
 

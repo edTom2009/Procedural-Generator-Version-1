@@ -1,11 +1,35 @@
-function hidePassword() {
-  var password = document.getElementById("password");
-  
-  password.addEventListener("click", () => {
-    password.type = "password";
-    password.value = "";
+function setupPlaceholderField(inputId, placeholderText, isPassword = false) {
+  var input = document.getElementById(inputId);
+
+  if (!input) return;
+
+  input.value = placeholderText;
+  input.dataset.hasTyped = "false";
+
+  input.addEventListener("focus", () => {
+    if (input.dataset.hasTyped !== "true" && input.value === placeholderText) {
+      input.value = "";
+    }
+
+    if (isPassword) {
+      input.type = "password";
+    }
   });
-  if (!password) return;
+
+  input.addEventListener("input", () => {
+    input.dataset.hasTyped = "true";
+  });
+
+  input.addEventListener("blur", () => {
+    if (input.dataset.hasTyped !== "true") {
+      input.value = placeholderText;
+
+      if (isPassword) {
+        input.type = "text";
+      }
+    }
+  });
 }
 
-hidePassword();
+setupPlaceholderField("username", "Username");
+setupPlaceholderField("password", "Password", true);

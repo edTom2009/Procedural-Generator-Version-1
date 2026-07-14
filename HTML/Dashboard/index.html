@@ -15,7 +15,7 @@
             <div class="navigation">
                 <button id="btnSettings">Settings</button>
                 <button id="btnHelp">Help</button>
-                <button id="btnLogOut" onclick="document.location='/HTML/Login/login.html'">Log Out</button><!--links back to login page-->
+                <button id="btnLogOut" onclick="document.location='/HTML/Account/login.html'">Log Out</button><!--links back to login page-->
             </div>
 
             <!--HTML for displaying rendered map will be added here-->
@@ -27,8 +27,9 @@
         <div class="parameterInput">
 
             <h2>Parameter Input</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia eaque dolore beatae animi? Iste, eaque harum corporis dignissimos saepe enim deleniti dolor voluptatum est natus. Numquam, ad sed. Exercitationem, deserunt?</p>
-
+            <p>
+                Input map generation parameters here, export map as png.
+            </p>
             <form action="\Python\main.py" class="formParameter">
                 <label for="mapWidth">Map Width:</label>
                 <input 
@@ -57,7 +58,7 @@
                     <span>Low</span>
                     <input 
                         type="range" 
-                        min="1" max="100" 
+                        min="0" max="100" 
                         value="50" 
                         class="slider" 
                         id="sldrDetail">
@@ -83,8 +84,10 @@
                 <span class="close">&times;</span>
                 <h2>Help</h2>
                 <hr>
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit asperiores officia consequuntur, harum facilis cumque dolor dolorum iste porro dolore sapiente hic eveniet quisquam laboriosam quas, ad dignissimos. Dignissimos, incidunt?
+                <p> <!--ADD LINE BREAKS AND BULLET POINTS-->
+                  Enter parameters to generate terrain.
+                  Use seed values to generate different maps, the seed will be random if none is entered.
+                  Export to save your map as an png.  
                 </p>
             </div>
         </div>

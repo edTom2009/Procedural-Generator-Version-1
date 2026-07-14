@@ -4,33 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login.css">
-    <title>Log In</title>
+    <title>Welcome Back</title>
 </head>
 <body>
-    <div class="login-container">
-        <h1>Welcome back...</h1>
-        <p>Sign in to continue.</p>
-        <form action="/HTML/Dashboard/index.html" method="post">
-            <input 
-                type="text" 
-                id="username" 
-                name="username"
-                value="Username" 
-                required>
-            <br><br>
-
-            <input 
-                type="text" 
-                id="password" 
-                name="password" 
-                value="Password"
-                required>
-            <br><br>
-            <input type="submit" value="Log In">
-        </form>
-        <p>Don't have an account?</p>
-        <a href="/HTML/Account_Creation/createAcc.html">Create Account</a>
+    <div class="background">
+        <img id="createAccImage" src="createAccPlaceholder.jpg">
     </div>
-    <script src="login.js"></script>
+
+    <div class="content-container">
+        <div class="inner-content">
+            <h1>Welcome back...</h1>
+            <p>Enter your details to sign in.</p>
+
+            <form action="/HTML/Account/login.html" method="post">
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    value="Username"
+                    required>
+                <br><br>
+
+                <input 
+                    type="text" 
+                    id="password" 
+                    name="password" 
+                    value="Password"
+                    required>
+                <br><br>
+                <input type="submit" value="Sign In">
+            </form>
+            <p>Not got an account?</p>
+            <a href="/HTML/Account/createAcc.html">Create Account</a>
+        </div>
+    </div>
+    <script src="createAcc.js"></script>
 </body>
 </html>

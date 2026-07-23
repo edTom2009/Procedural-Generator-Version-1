@@ -1,7 +1,7 @@
 #libraries
 import random
 import math
-import numpy
+
 
 
 #variables
@@ -9,16 +9,31 @@ WIDTH = 100 #placeholder values
 HEIGHT = 100
 DETAIL = 50
 SEED = 0
-
+octaves = 3
+Radian = 2*(math.pi)
 #functions
-def normalise(value, scale):
-    normValue = value/scale
-    return(normalValue)
 
 #GRADIENT VECTOR GENERATION
 #determine max size of gradient vector grid - based on map size and highest octave
 #generate a array of gradient vectors and calculate components
+maxWidth = octaves * WIDTH
+maxHeight = octaves * HEIGHT
+gradVectGrid = []
+gridRow = []
+for i in range (maxHeight):
+    for j in range (maxWidth):
+        angleDeg = random.randint(0,360)
+        angleRad = (angleDeg/360)*Radian
+        x = math.sin(angleRad)
+        y = math.cos(angleRad)
+        coordValues = [x,y]
+        gridRow.append(coordValues)
+    gradVectGrid.append(gridRow)
+    gridRow = []
 
+print (gradVectGrid)
+#[ [ [x1,y1], [x2,y2] ]
+#  [ [x3,y3], [x4,y4] ] ]
 
 #create array for based on map size
 #calculate the distance between each plotted pixdl and the next using the lacunarity value

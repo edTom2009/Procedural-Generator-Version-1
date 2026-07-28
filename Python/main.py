@@ -10,33 +10,36 @@ HEIGHT = 100
 DETAIL = 50
 SEED = 0
 octaves = 3
-Radian = 2*(math.pi)
+RADIAN = 2*(math.pi)
 #functions
 
-#GRADIENT VECTOR GENERATION
-#determine max size of gradient vector grid - based on map size and highest octave
-#generate a array of gradient vectors and calculate components
-maxWidth = octaves * WIDTH
-maxHeight = octaves * HEIGHT
-gradVectGrid = []
-gridRow = []
-for i in range (maxHeight):
-    for j in range (maxWidth):
-        angleDeg = random.randint(0,360)
-        angleRad = (angleDeg/360)*Radian
-        x = math.sin(angleRad)
-        y = math.cos(angleRad)
-        coordValues = [x,y]
-        gridRow.append(coordValues)
-    gradVectGrid.append(gridRow)
-    gridRow = []
+#GRADIENT VECTOR GENERATOR
+#generates a grid of gradient vectors for the map pixels to reference when calculating the dot product for each pixel
+def generateGradientVectors():
+    maxWidth = octaves * WIDTH
+    maxHeight = octaves * HEIGHT
+    gradVectGrid = []
 
-print (gradVectGrid)
-#[ [ [x1,y1], [x2,y2] ]
-#  [ [x3,y3], [x4,y4] ] ]
+    for y in range (maxHeight):
+        gridRow = []
+        for x in range (maxWidth):
+            angleDeg = random.randint(0,360)
+            angleRad = math.radians(angleDeg)
+            i = math.sin(angleRad)
+            j = math.cos(angleRad)
+            coordValues = [i,j]
+            gridRow.append(coordValues)
+
+        gradVectGrid.append(gridRow)  
+    return gradVectGrid
+
+gradVectGrid = generateGradientVectors()
+print(gradVectGrid)
+print(len(gradVectGrid))
+print(len(gradVectGrid[0]))
 
 #create array for based on map size
-#calculate the distance between each plotted pixdl and the next using the lacunarity value
+#calculate the distance between each plotted pixel and the next using the lacunarity value
 #add random offset for first pixel on grid
 #plot first pixel and calulate respecive distance vectors to each corner
 #take dot products of each distance and gradient vectors

@@ -11,18 +11,19 @@ DETAIL = 50
 SEED = 0
 octaves = 3
 RADIAN = 2*(math.pi)
+CELLSIZE = 20
 #functions
 
 #GRADIENT VECTOR GENERATOR
 #generates a grid of gradient vectors for the map pixels to reference when calculating the dot product for each pixel
 def generateGradientVectors():
-    maxWidth = octaves * WIDTH
-    maxHeight = octaves * HEIGHT
+    maxWidth = octaves * WIDTH // CELLSIZE
+    maxHeight = octaves * HEIGHT // CELLSIZE
     gradVectGrid = []
 
-    for y in range (maxHeight):
+    for height in range (maxHeight):
         gridRow = []
-        for x in range (maxWidth):
+        for width in range (maxWidth):
             angleDeg = random.randint(0,360)
             angleRad = math.radians(angleDeg)
             i = math.sin(angleRad)
@@ -33,10 +34,48 @@ def generateGradientVectors():
         gradVectGrid.append(gridRow)  
     return gradVectGrid
 
+def generateOctaves(lacunarity, step, gradVectGrid):
+    maxWidth = lacunarity * WIDTH
+    maxHeight = lacunarity * HEIGHT
+    distVectGrid = []
+    for y in range (maxHeight,0,step):
+        gridRow = []
+        for x in range (maxWidth,0,step):
+            gridX = x // CELLSIZE
+            gridY = y // CELLSIZE
+
+            v00 = gradVectGrid[gridY][gridX]         # top left
+            v10 = gradVectGrid[gridY][gridX + 1]     # top right
+            v01 = gradVectGrid[gridY + 1][gridX]     # bottom left
+            v11 = gradVectGrid[gridY + 1][gridX + 1] # bottom right
+
+            local_x = (x % CELLSIZE) / CELLSIZE
+            local_y = (y % CELLSIZE) / CELLSIZE
+
+            d00 = [local_x, local_y]
+            d10 = [local_x - 1, local_y]
+            d01 = [local_x, local_y - 1]
+            d11 = [local_x - 1, local_y - 1]
+
+            dot00 = v00[0] * d00[0] + v00[1] * d00[1]
+            dot10 = v10[0] * d10[0] + v10[1] * d10[1]
+            dot01 = v01[0] * d01[0] + v01[1] * d01[1]
+            dot11 = v11[0] * d11[0] + v11[1] * d11[1]
+
+            
+            gridRow.append(dot00)
+            print (x)
+
+        distVectGrid.append(gridRow)
+    
+    return distVectGrid
+    
+
 gradVectGrid = generateGradientVectors()
-print(gradVectGrid)
-print(len(gradVectGrid))
-print(len(gradVectGrid[0]))
+octave1 = generateOctaves(1, 3, gradVectGrid)
+#print(octave1)
+print(len(octave1))
+print(len(octave1[0]))
 
 #create array for based on map size
 #calculate the distance between each plotted pixel and the next using the lacunarity value

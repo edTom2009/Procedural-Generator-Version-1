@@ -16,7 +16,7 @@ DETAIL = 50
 SEED = 0
 octaves = 3
 RADIAN = 2*(math.pi)
-CELLSIZE = 20
+CELLSIZE = 50
 #functions
 
 #GRADIENT VECTOR GENERATOR
@@ -34,17 +34,11 @@ def generateGradientVectors():
 
     return gradVectGrid
 
-def interpolateDotProducts(dot00, dot10, dot01, dot11, local_x, local_y):
-    grid = np.array([[dot00, dot10], [dot01, dot11]], dtype=float)
+def fade(t):
+    return 6*t**5 - 15*t**4 + 10*t**3
 
-    interpolator = sp.interpolate.RegularGridInterpolator(
-        (np.array([0.0, 1.0]), np.array([0.0, 1.0])),
-        grid,
-        method="linear"
-    )
-
-    return float(interpolator((local_x, local_y)))
-
+def lerp(a, b, t):
+    return a + t * (b - a)
 
 def generateOctaves(lacunarity, step, gradVectGrid):
     maxWidth = lacunarity * WIDTH
@@ -76,10 +70,15 @@ def generateOctaves(lacunarity, step, gradVectGrid):
             dot01 = v01[0] * d01[0] + v01[1] * d01[1]
             dot11 = v11[0] * d11[0] + v11[1] * d11[1]
 
-            interpolated_value = interpolateDotProducts(
-                dot00, dot10, dot01, dot11, local_x, local_y
-            )
-            octaveGrid[j, i] = interpolated_value
+            u = fade(local_x)
+            v = fade(local_y)
+
+            top = lerp(dot00, dot10, u)
+            bottom = lerp(dot01, dot11, u)
+
+            value = lerp(top, bottom, v)
+
+            octaveGrid[j, i] = value
 
             x += step
 

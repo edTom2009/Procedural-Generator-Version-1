@@ -3,9 +3,9 @@ import random
 import math
 
 import numpy as np
-import scipy as sp
 
 import matplotlib.pyplot as plt
+import cv2
 
 
 
@@ -14,16 +14,17 @@ WIDTH = 100 #placeholder values
 HEIGHT = 100
 DETAIL = 50
 SEED = 0
-octaves = 3
-RADIAN = 2*(math.pi)
+NumOctaves = 5
 CELLSIZE = 50
-#functions
 
+RADIAN = 2*(math.pi)
+
+#functions
 #GRADIENT VECTOR GENERATOR
 #generates a grid of gradient vectors for the map pixels to reference when calculating the dot product for each pixel
 def generateGradientVectors():
-    maxWidth = (octaves + 1) * WIDTH // CELLSIZE
-    maxHeight = (octaves + 1) * HEIGHT // CELLSIZE
+    maxWidth = (NumOctaves + 1) * WIDTH // CELLSIZE
+    maxHeight = (NumOctaves + 1) * HEIGHT // CELLSIZE
     gradVectGrid = np.empty((maxHeight, maxWidth, 2), dtype=float)
 
     for y in range(maxHeight):
@@ -34,7 +35,7 @@ def generateGradientVectors():
 
     return gradVectGrid
 
-def fade(t):
+def fade(t): #Fade function for interpolation, smooths the transition between values, from 
     return 6*t**5 - 15*t**4 + 10*t**3
 
 def lerp(a, b, t):
@@ -98,19 +99,11 @@ ax.imshow(octave1, cmap='gray')
 plt.show()
 #print(len(octave1[0]))
 
-#create array for based on map size
-#calculate the distance between each plotted pixel and the next using the lacunarity value
-#add random offset for first pixel on grid
-#plot first pixel and calulate respecive distance vectors to each corner
-#take dot products of each distance and gradient vectors
-#interpolate between values first horizontally then vertically
-#store result as a single value in the array
-#normalise values to between 0 and 1
-#repeat for each pixel in map grid
+
 #repeat for each octave using respective lacunarity value
 #store each ocatve as its own array
 
-#divide each octave value by its persistance value to determine its eefect on the map
+#divide each octave value by its persistance value to determine its effect on the map
 #add octaves together for each pixel
 
 #render map

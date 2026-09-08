@@ -3,24 +3,28 @@ import random
 import math
 
 import numpy as np
-import scipy as sp
 
 import matplotlib.pyplot as plt
+import cv2
+
+
 
 #variables
 WIDTH = 100 #placeholder values
 HEIGHT = 100
 DETAIL = 50
 SEED = 0
-octaves = 3
-RADIAN = 2*(math.pi)
-CELLSIZE = 20
+NumOctaves = 5
+CELLSIZE = 50
 
+RADIAN = 2*(math.pi)
+
+#functions
 #GRADIENT VECTOR GENERATOR
 #generates a grid of gradient vectors for the map pixels to reference when calculating the dot product for each pixel
 def generateGradientVectors():
-    maxWidth = (octaves + 1) * WIDTH // CELLSIZE
-    maxHeight = (octaves + 1) * HEIGHT // CELLSIZE
+    maxWidth = (NumOctaves + 1) * WIDTH // CELLSIZE
+    maxHeight = (NumOctaves + 1) * HEIGHT // CELLSIZE
     gradVectGrid = np.empty((maxHeight, maxWidth, 2), dtype=float)
 
     for y in range(maxHeight):
@@ -31,17 +35,11 @@ def generateGradientVectors():
 
     return gradVectGrid
 
-def interpolateDotProducts(dot00, dot10, dot01, dot11, local_x, local_y):
-    grid = np.array([[dot00, dot10], [dot01, dot11]], dtype=float)
+def fade(t): #Fade function for interpolation, smooths the transition between values, from 
+    return 6*t**5 - 15*t**4 + 10*t**3
 
-    interpolator = sp.interpolate.RegularGridInterpolator(
-        (np.array([0.0, 1.0]), np.array([0.0, 1.0])),
-        grid,
-        method="linear"
-    )
-
-    return float(interpolator((local_x, local_y)))
-
+def lerp(a, b, t):
+    return a + t * (b - a)
 
 def generateOctaves(lacunarity, step, gradVectGrid):
     maxWidth = lacunarity * WIDTH
@@ -78,11 +76,15 @@ def generateOctaves(lacunarity, step, gradVectGrid):
             dot01 = v01[0] * d01[0] + v01[1] * d01[1]
             dot11 = v11[0] * d11[0] + v11[1] * d11[1]
 
-            #interpolate the dot products to get the final value for the pixel
-            interpolated_value = interpolateDotProducts(
-                dot00, dot10, dot01, dot11, local_x, local_y
-            )
-            octaveGrid[j, i] = interpolated_value
+            u = fade(local_x)
+            v = fade(local_y)
+
+            top = lerp(dot00, dot10, u)
+            bottom = lerp(dot01, dot11, u)
+
+            value = lerp(top, bottom, v)
+
+            octaveGrid[j, i] = value
 
             x += step
         y += step
@@ -100,13 +102,12 @@ ax.imshow(octave1, cmap='gray')
 plt.show()
 #print(len(octave1[0]))
 
-#TO DO
 
-#calculate the step between each plotted pixel using the lacunarity value
+#repeat for each octave using respective lacunarity value
+#store each ocatve as its own array
 
-#take user input from html form
-
-#Add together the ocatves and normalize the values to be between 0 and 1
+#divide each octave value by its persistance value to determine its effect on the map
+#add octaves together for each pixel
 
 #render map
 

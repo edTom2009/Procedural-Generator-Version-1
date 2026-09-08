@@ -1,0 +1,43 @@
+<form action="\Python\main.py" class="formParameter">
+    <label for="mapWidth">Map Width:</label>
+    <input 
+        type="number" 
+        id="mapWidth" 
+        name="mapWidth">
+    <br><br>
+
+    <label for="mapHeight">Map Height:</label>
+    <input 
+        type="number" 
+        id="mapHeight" 
+        name="mapHeight">
+    <br><br>
+
+    <label for="seedVal">Seed Value:</label>
+    <input 
+        type="number" 
+        id="seedVal" 
+        name="seed">
+    <br><br>
+
+    <!---------------------------- Slider ----------------------------->
+    <div class="slideContianer">
+        <label for="sldrDetail">Detail</label><br>
+        <span>Low</span>
+        <input 
+            type="range" 
+            min="0" max="100" 
+            value="50" 
+            class="slider" 
+            id="sldrDetail">
+        <span>High</span>
+        <br><br>
+    </div>            
+    <div class="parameterButtons">
+        <input 
+            type="submit" 
+            id="generateTerrain" 
+            value="Generate Terrain">
+        <button id="exportTerrain">Export Terrain</button>
+    </div>
+</form>

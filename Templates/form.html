@@ -1,16 +1,16 @@
-<form action="\Python\main.py" class="formParameter">
+<form action="{{ url_for('gfg') }}" method="post">
     <label for="mapWidth">Map Width:</label>
     <input 
         type="number" 
         id="mapWidth" 
-        name="mapWidth">
+        name="width">
     <br><br>
 
     <label for="mapHeight">Map Height:</label>
     <input 
         type="number" 
         id="mapHeight" 
-        name="mapHeight">
+        name="height">
     <br><br>
 
     <label for="seedVal">Seed Value:</label>
@@ -30,6 +30,7 @@
             value="50" 
             class="slider" 
             id="sldrDetail">
+            name="detail">
         <span>High</span>
         <br><br>
     </div>            

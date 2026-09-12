@@ -1,14 +1,48 @@
 #libraries
 import random
 import math
+import os
 
 import numpy as np
 
 import matplotlib.pyplot as plt
 import cv2
 
+from flask import Flask, request, render_template, send_from_directory
+app = Flask(__name__)
+
+@app.route("/", methods=["GET", "POST"])
+def gfg():
+    dashboard_dir = os.path.join(app.root_path, 'HTML', 'Dashboard')
+
+    if request.method == "POST":
+        # Get the form data
+        width = int(request.form.get("width", 100))
+        height = int(request.form.get("height", 100))
+        detail = int(request.form.get("detail", 50))
+        seed = int(request.form.get("seed", 0))
+
+        # Update global variables
+        global WIDTH, HEIGHT, DETAIL, SEED
+        WIDTH = width
+        HEIGHT = height
+        DETAIL = detail
+        SEED = seed
+
+        # After processing POST, return the dashboard view
+        return send_from_directory(dashboard_dir, 'index.html')
+
+    # On GET, serve the dashboard
+    return send_from_directory(dashboard_dir, 'index.html')
 
 
+@app.route('/dashboard')
+def dashboard():
+    dashboard_dir = os.path.join(app.root_path, 'HTML', 'Dashboard')
+    return send_from_directory(dashboard_dir, 'index.html')
+
+if __name__ == "__main__":
+    app.run(debug=True)
 #variables
 WIDTH = 100 #placeholder values
 HEIGHT = 100
@@ -94,12 +128,12 @@ def generateOctaves(lacunarity, step, gradVectGrid):
 gradVectGrid = generateGradientVectors()
 octave1 = generateOctaves(1, 3, gradVectGrid)
 #print(octave1)
-print(len(octave1))
-print(len(octave1[0]))
+#print(len(octave1))
+#print(len(octave1[0]))
 
-fig, ax = plt.subplots()
-ax.imshow(octave1, cmap='gray')
-plt.show()
+###fig, ax = plt.subplots()
+##ax.imshow(octave1, cmap='gray')
+#plt.show()
 #print(len(octave1[0]))
 
 

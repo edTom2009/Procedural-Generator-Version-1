@@ -19,7 +19,7 @@
             </div>
 
             <!--HTML for displaying rendered map will be added here-->
-            <img id="renderedMap" src="Map Placeholder.png" width>
+            <img id="renderedMap" src="/rendered-map.png" alt="Generated terrain map" width="600">
 
         </div>
 
@@ -30,26 +30,29 @@
             <p>
                 Input map generation parameters here, export map as png.
             </p>
-            <form action="\Python\main.py" class="formParameter">
+            <form action="/" method="post" class="formParameter">
                 <label for="mapWidth">Map Width:</label>
                 <input 
                     type="number" 
                     id="mapWidth" 
-                    name="mapWidth">
+                    name="width"
+                    value="100">
                 <br><br>
 
                 <label for="mapHeight">Map Height:</label>
                 <input 
                     type="number" 
                     id="mapHeight" 
-                    name="mapHeight">
+                    name="height"
+                    value="100">
                 <br><br>
 
                 <label for="seedVal">Seed Value:</label>
                 <input 
                     type="number" 
                     id="seedVal" 
-                    name="seed">
+                    name="seed"
+                    value="0">
                 <br><br>
 
                 <!---------------------------- Slider ----------------------------->
@@ -61,7 +64,8 @@
                         min="0" max="100" 
                         value="50" 
                         class="slider" 
-                        id="sldrDetail">
+                        id="sldrDetail"
+                        name="detail">
                     <span>High</span>
                     <br><br>
                 </div>

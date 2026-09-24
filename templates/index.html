@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="index-style.css">
+        <link rel="stylesheet" href="{{url_for('static', filename='index-style.css')}}">
         <title>Dashboard</title>
     </head>
     <body>
@@ -15,11 +15,11 @@
             <div class="navigation">
                 <button id="btnSettings">Settings</button>
                 <button id="btnHelp">Help</button>
-                <button id="btnLogOut" onclick="document.location='/HTML/Account/login.html'">Log Out</button><!--links back to login page-->
+                <button id="btnLogOut" onclick="document.location='{{url_for('login')}}'">Log Out</button><!--links back to login page-->
             </div>
 
             <!--HTML for displaying rendered map will be added here-->
-            <img id="renderedMap" src="/rendered-map.png" alt="Generated terrain map" width="600">
+            <img id="renderedMap" src="{{url_for('static', filename='rendered-map.png')}}" alt="Generated terrain map" width="600">
 
         </div>
 
@@ -136,6 +136,6 @@
             </div>
         </div>
         
-        <script src="index.js"></script><!--links to js file.-->
+        <script src="{{url_for('static', filename='index.js')}}"></script><!--links to js file.-->
     </body>
 </html>

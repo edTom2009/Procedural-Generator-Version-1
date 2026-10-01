@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='createAcc.css')}}">
     <title>Create Account</title>
 </head>
 <body>
     <div class="background">
-        <img id="createAccImage" src="createAccPlaceholder.jpg">
+        <img id="createAccImage" src="{{url_for('static', filename='createAccPlaceholder.jpg')}}">
     </div>
 
     <div class="content-container">
@@ -16,7 +16,7 @@
             <h1>Create Account</h1>
             <p>Enter your details to create an account.</p>
 
-            <form action="/HTML/Account/login.html" method="post">
+            <form action="{{url_for('create_account')}}" method="post">
                 <input 
                     type="text" 
                     id="username" 
@@ -34,9 +34,9 @@
                 <br><br>
                 <input type="submit" value="Create Account">
             </form>
-            <a href="/HTML/Account/login.html">Back to Login</a>
+            <a href="{{url_for('login')}}">Back to Login</a>
         </div>
     </div>
-    <script src="createAcc.js"></script>
+    <script src="{{url_for('static', filename='createAcc.js')}} "></script>
 </body>
 </html>

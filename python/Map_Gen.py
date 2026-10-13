@@ -5,11 +5,13 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
+from app import width, height, detail, seed
+
 # variables
-WIDTH = 100
-HEIGHT = 100
-DETAIL = 50
-SEED = 0
+WIDTH = width
+HEIGHT = height
+DETAIL = detail
+SEED = seed
 NumOctaves = 5
 CELLSIZE = 50
 RADIAN = 2 * (math.pi)

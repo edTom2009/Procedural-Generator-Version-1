@@ -17,11 +17,9 @@ class User(db.Model):
     password = db.Column(db.String(80), nullable=False)
 
 
-@app.route('/')
-def index():
-    return render_template('index.html')
 
-@app.route('/login', methods=['GET', 'POST'])
+
+@app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -54,4 +52,17 @@ def create_account():
 
         return redirect(url_for('login'))
     return render_template('createAcc.html')
+
+@app.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    if request.method == 'POST':
+        width = request.form['mapWidth']
+        height = request.form['mapHeight']
+        seed = request.form['seedVal']
+        detail = request.form['sldrDetail']
+
+
+    return render_template('index.html')
+
+
 app.run(debug=True)

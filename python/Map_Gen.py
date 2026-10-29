@@ -90,7 +90,34 @@ def generateOctaves(lacunarity, step, gradVectGrid):
 vectorGrid = generateGradientVectors()
 Octave1 = generateOctaves(1, 1, vectorGrid)
 
+def generate_terrain(width, height, seed, detail):
+    # Set the random seed for reproducibility
+    if seed == 0:
+        seed = random.randint(0, 1000000)
+    random.seed(seed)
 
+    # Generate the terrain using Perlin noise or any other algorithm
+    terrain = np.zeros((height, width), dtype=float)
+
+    # Generate multiple octaves of noise and combine them
+    for octave in range(NumOctaves):
+        frequency = 2 ** octave
+        amplitude = 1 / frequency
+        step = int(CELLSIZE / frequency)
+        octave_noise = generateOctaves(frequency, step, vectorGrid)
+        terrain += amplitude * octave_noise[:height, :width]
+
+    # Normalize the terrain values to the range [0, 1]
+    terrain -= terrain.min()
+    terrain /= terrain.max()
+
+    # Save the terrain as an image (optional)
+    plt.imshow(terrain, cmap='terrain')
+    plt.axis('off')
+    plt.savefig('terrain.png', bbox_inches='tight', pad_inches=0)
+    plt.close()
+
+    print("Terrain generated successfully!")
 
 
 

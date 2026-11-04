@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static', filename='index-style.css')}}">
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <!--========================== MAIN =========================-->
+        <div class="background">
+            <img id="createAccImage" src="{{url_for('static', filename='accountBG.jpg')}}">
+        </div>
+        <div class="main">
+            <h1 id="pageTitle">Procedural Terrain Generator</h1>
+
+            <div class="navigation">
+                <button id="btnSettings">Settings</button>
+                <button id="btnHelp">Help</button>
+                <button id="btnLogOut" onclick="document.location='/login'">Log Out</button><!--links back to login page-->
+            </div>
+
+            <!--HTML for displaying rendered map will be added here-->
+            <img id="renderedMap" src="{{url_for('static', filename='rendered-map.png')}}" alt="Generated terrain map" width="600">
+
+        </div>
+
+        <!--========================== SIDE-BAR =========================-->
+        <div class="parameterInput">
+
+            <h2>Parameter Input</h2>
+            <p>
+                Input map generation parameters here, export map as png.
+            </p>
+            <form action="/generate" method="post" class="formParameter">
+                <label for="mapWidth">Map Width:</label>
+                <input 
+                    type="number" 
+                    id="mapWidth" 
+                    name="mapWidth"
+                    value="100"
+                    required>
+                <br><br>
+
+                <label for="mapHeight">Map Height:</label>
+                <input 
+                    type="number" 
+                    id="mapHeight" 
+                    name="mapHeight"
+                    value="100"
+                    required>
+                <br><br>
+
+                <label for="seedVal">Seed Value:</label>
+                <input 
+                    type="number" 
+                    id="seedVal" 
+                    name="seedVal"
+                    value="0"
+                >
+                <br><br>
+
+                <!---------------------------- Slider ----------------------------->
+                <div class="slideContianer">
+                    <label for="sldrDetail">Detail</label><br>
+                    <span>Low</span>
+                    <input 
+                        type="range" 
+                        min="0" max="100" 
+                        value="50" 
+                        class="slider" 
+                        id="sldrDetail"
+                        name="detailVal">
+                    <span>High</span>
+                    <br><br>
+                </div>
+
+                <div class="parameterButtons">
+                    <input 
+                        type="submit" 
+                        id="generateTerrain" 
+                        value="Generate Terrain">
+                    <button id="exportTerrain">Export Terrain</button>
+                </div>
+            </form>
+        </div>
+
+        <!--========================== MODALS =========================-->
+
+        <!---------------------------- HELP ----------------------------->
+        <div class="modal" id="modalHelp">
+            <div class="modalContainer">
+                <span class="close">&times;</span>
+                <h2>Help</h2>
+                <hr>
+                <p> <!--ADD LINE BREAKS AND BULLET POINTS-->
+                  Enter parameters to generate terrain.
+                  Use seed values to generate different maps, the seed will be random if none is entered.
+                  Export to save your map as an png.  
+                </p>
+            </div>
+        </div>
+
+        <!---------------------------- SETTINGS ----------------------------->
+        <div class="modal" id="modalSettings">
+            <div class="modalContainer">
+                <span class="close">&times;</span>
+                <h2>Settings</h2>
+                <hr>
+            <!---------------------------- Slider ----------------------------->
+                <div class="slideContianer">
+                    <label for="sldrFontSize">Font Size</label><br>
+                    <span>Small</span>
+                    <input 
+                        type="range" 
+                        min="10" 
+                        max="25" 
+                        value="16" 
+                        class="slider" 
+                        id="sldrFontSize">
+                    <span>Large</span>
+                    <br>
+                    <p id="sampleText">
+                        This will the size of the text.
+                    </p>
+                </div>
+
+                <!---------------------------- Drop Menu ----------------------------->
+                <div class="dropdownContainer">                            
+                    <label for="theme">Theme:</label>
+                    <select name="theme" id="drpTheme" value="Light">
+                        <option value="Light">Default (Light)</option>
+                        <option value="Dark">Dark</option>
+                    </select>
+                    <br><br>
+                </div>
+                <div class="settingsButtons">
+                    <button id="btnResetSett">Reset Settings</button>
+                    <button id="btnApplySett">Apply Settings</button>
+                </div>
+            </div>
+        </div>
+        
+        <script src="{{url_for('static', filename='index.js')}}"></script><!--links to js file.-->
+    </body>
+</html>

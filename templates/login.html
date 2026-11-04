@@ -16,7 +16,7 @@
             <h1>Welcome back...</h1>
             <p>Enter your details to sign in.</p>
 
-            <form action="{{url_for('login')}}" method="post">
+            <form action="/loginCheck" method="post">
                 <input 
                     type="text" 
                     id="username" 
@@ -35,7 +35,7 @@
                 <input type="submit" value="Sign In">
             </form>
             <p>Not got an account?</p>
-            <a href="{{url_for('create_account')}}">Create Account</a>
+            <a href="/register">Create Account</a>
         </div>
     </div>
     <script src="{{url_for('static', filename='account.js')}} "></script>

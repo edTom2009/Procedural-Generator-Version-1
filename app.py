@@ -1,11 +1,63 @@
-from flask import Flask, render_template, request
-from terrain import generate_terrain
+from flask import Flask, redirect, request
+from flask.templating import render_template
+from flask_sqlalchemy import SQLAlchemy
+#from terrain import generate_terrain
+
+
+
 
 app = Flask(__name__)
 
-@app.route("/")
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  
+
+db = SQLAlchemy(app)
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(150), unique=True, nullable=False)
+    password = db.Column(db.String(150), nullable=False)
+
+@app.route('/')
 def index():
-    return render_template("index.html")
+    users = User.query.all()
+    return render_template('index.html', users=users)
+
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    return render_template("register.html")
+
+@app.route('/add', methods=["POST"])
+def profile():
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+    if username != '' and password != '':
+        u = User(username=username, password=password)
+        db.session.add(u)
+        db.session.commit()
+        return redirect('/dashboard')
+    else:
+        return redirect('/register')    
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    return render_template('login.html')
+
+@app.route('/loginCheck', methods=['POST'])
+def loginCheck():
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+    user = User.query.filter_by(username=username, password=password).first()
+
+    if user:
+        return redirect('/dashboard')
+    else:
+        return redirect('/login')  # Redirect back to login on failure
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
 
 
 @app.route("/generate", methods=["POST"])
@@ -19,13 +71,11 @@ def generate():
 
     return "Terrain generated successfully!"
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    return render_template('login.html')
 
-@app.route("/register", methods=['GET', 'POST'])
-def register():
-    return render_template("register.html")
 
-if __name__ == "__main__":
+
+      
+if __name__ == '__main__':
+    with app.app_context():  # Needed for DB operations
+        db.create_all()      # Creates the database and tables
     app.run(debug=True)

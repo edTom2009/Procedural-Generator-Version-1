@@ -91,3 +91,9 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: var(--accent-hover);
 }
+
+#errorMessage {
+    color: red;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}

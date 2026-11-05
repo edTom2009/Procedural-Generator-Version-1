@@ -11,25 +11,42 @@
         <img id="createAccImage" src="{{url_for('static', filename='accountBG.jpg')}}">
     </div>
 
+    
+   
+
     <div class="content-container">
         <div class="inner-content">
             <h1>Create Account</h1>
             <p>Enter your details to create an account.</p>
+
+            <div class="errorMessages">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="flashes">
+                        {% for category, message in messages %}
+                            <div class="flash {{ category }}" id="errorMessage">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            </div>
 
             <form action="/add" method="post">
                 <input 
                     type="text" 
                     id="username" 
                     name="username" 
-                    value="Username"
+                    placeholder="Username"
                     required>
                 <br><br>
 
                 <input 
-                    type="text" 
+                    type="password" 
                     id="password" 
                     name="password" 
-                    value="Password"
+                    placeholder="Password"
                     required>
                 <br><br>
                 <input type="submit" value="Create Account">

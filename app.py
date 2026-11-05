@@ -1,22 +1,24 @@
-from flask import Flask, redirect, request
+#========Imports========
+from flask import Flask, redirect, request, flash
 from flask.templating import render_template
 from flask_sqlalchemy import SQLAlchemy
 #from terrain import generate_terrain
 
-
-
-
+#========Flask app setup========
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Replace with a secure key in production
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  
 
+#========Database setup========
 db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(150), nullable=False)
 
+#========Render templates========
 @app.route('/')
 def index():
     users = User.query.all()
@@ -26,23 +28,33 @@ def index():
 def register():
     return render_template("register.html")
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    return render_template('login.html')
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
+
+#========form handling========
+#new user registration
 @app.route('/add', methods=["POST"])
 def profile():
     username = request.form.get("username")
     password = request.form.get("password")
 
-    if username != '' and password != '':
+
+    if not User.query.filter_by(username=username).first():  # Check if user already exists
         u = User(username=username, password=password)
         db.session.add(u)
         db.session.commit()
-        return redirect('/dashboard')
+        return redirect('/login')
     else:
-        return redirect('/register')    
+        flash("Username already exists. Please choose a different one.")
+        return redirect('/register')
+  
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    return render_template('login.html')
-
+#login check
 @app.route('/loginCheck', methods=['POST'])
 def loginCheck():
     username = request.form.get("username")
@@ -53,13 +65,10 @@ def loginCheck():
     if user:
         return redirect('/dashboard')
     else:
+        flash("Invalid username or password. Please try again.")
         return redirect('/login')  # Redirect back to login on failure
 
-@app.route("/dashboard")
-def dashboard():
-    return render_template("dashboard.html")
-
-
+#terrain generation route
 @app.route("/generate", methods=["POST"])
 def generate():
     width = int(request.form["mapWidth"])

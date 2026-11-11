@@ -4,21 +4,21 @@ from flask.templating import render_template
 from flask_sqlalchemy import SQLAlchemy
 #from terrain import generate_terrain
 
-#========Flask app setup========
+#=================Flask app setup==================
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a secure key in production
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  
 
-#========Database setup========
+#Database setup
 db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(150), nullable=False)
 
-#========Render templates========
+#=================Render templates==================
 @app.route('/')
 def index():
     users = User.query.all()
@@ -36,7 +36,7 @@ def login():
 def dashboard():
     return render_template("dashboard.html")
 
-#========form handling========
+#=================Form Handling==================
 #new user registration
 @app.route('/add', methods=["POST"])
 def profile():
@@ -79,8 +79,6 @@ def generate():
     generate_terrain(width, height, seed, detail)
 
     return "Terrain generated successfully!"
-
-
 
 
       

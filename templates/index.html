@@ -15,7 +15,6 @@
                <th>Id</th>
                <th>Username</th>
                <th>Password</th>
-               <th>Action</th>
             </tr>
          </thead>
 
@@ -25,9 +24,6 @@
                <td>{{ data.id }}</td>
                <td>{{ data.username }}</td>
                <td>{{ data.password }}</td>
-               <td>
-                  <a href="/delete/{{ data.id }}">Delete</a>
-               </td>
             </tr>
             {% endfor %}
          </tbody>
